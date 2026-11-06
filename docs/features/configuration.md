@@ -64,6 +64,14 @@ Maximum number of port connections an instance keeps on one line; above it, conn
 
 Maximum number of consecutive empty lines to keep (1-1000000); longer runs are reduced to this many. Comments and slang-format: off regions are unchanged. null keeps every empty line
 
+### `lineEnding`
+
+**Type:** `string`
+
+**Default:** `"preserve"`
+
+Line endings of formatted output: preserve keeps each line's ending from the input and mixed input stays mixed; a line break the formatter adds takes the ending of the input line it splits, else the input's first line ending, else LF. native uses the host's line ending (CRLF on Windows, LF elsewhere), lf and crlf force that ending
+
 ### `maxSyntaxDepth`
 
 **Type:** `integer`

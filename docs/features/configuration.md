@@ -58,6 +58,12 @@ Number of spaces before trailing comments (0-256)
 
 Maximum number of port connections an instance keeps on one line; above it, connections go one per line (0 = always one per line, maximum 1000000)
 
+### `maxEmptyLines`
+
+**Type:** `integer | null`
+
+Maximum number of consecutive empty lines to keep (1-1000000); longer runs are reduced to this many. Comments and slang-format: off regions are unchanged. null keeps every empty line
+
 ### `maxSyntaxDepth`
 
 **Type:** `integer`

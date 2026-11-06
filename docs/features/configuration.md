@@ -72,6 +72,14 @@ Maximum number of consecutive empty lines to keep (1-1000000); longer runs are r
 
 Line endings of formatted output: preserve keeps each line's ending from the input and mixed input stays mixed; a line break the formatter adds takes the ending of the input line it splits, else the input's first line ending, else LF. native uses the host's line ending (CRLF on Windows, LF elsewhere), lf and crlf force that ending
 
+### `directiveIndent`
+
+**Type:** `string`
+
+**Default:** `"code"`
+
+Placement of conditional directives (ifdef, ifndef, elsif, else, endif) that start their own line. "code" indents them with the surrounding code and indents the code between them one more level; "column0" puts them at column 0 and leaves the code between them at its normal indent. Other directives, and conditional directives that share a line with code, are unaffected
+
 ### `maxSyntaxDepth`
 
 **Type:** `integer`

@@ -161,3 +161,22 @@ TEST_CASE("line ending configuration accepts preserve, native, lf, and crlf") {
         CHECK_FALSE(error.empty());
     }
 }
+
+TEST_CASE("directiveIndent accepts code and column0") {
+    std::string error;
+    auto config = format::parseConfig("{}", error);
+    REQUIRE(config);
+    CHECK(config->directiveIndent.get() == format::DirectiveIndent::code);
+    config = format::parseConfig(R"({"directiveIndent":"column0"})", error);
+    REQUIRE(config);
+    CHECK(config->directiveIndent.get() == format::DirectiveIndent::column0);
+    config = format::parseConfig(R"({"directiveIndent":"code"})", error);
+    REQUIRE(config);
+    CHECK(config->directiveIndent.get() == format::DirectiveIndent::code);
+    for (auto json : {R"({"directiveIndent":"none"})", R"({"directiveIndent":0})",
+                      R"({"directiveIndent":null})"}) {
+        INFO(json);
+        CHECK_FALSE(format::parseConfig(json, error));
+        CHECK_FALSE(error.empty());
+    }
+}

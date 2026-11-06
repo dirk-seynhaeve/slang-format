@@ -33,6 +33,14 @@ enum class LineEnding {
     crlf,
 };
 
+/// Placement of conditional compilation directives.
+enum class DirectiveIndent {
+    /// Indent directives with the surrounding code; code between them is indented one level.
+    code,
+    /// Put directives at column 0; code between them keeps its structural indent.
+    column0,
+};
+
 /// Controls alignment padding and separation into groups.
 struct AlignConfig {
 
@@ -91,6 +99,15 @@ struct Config {
         "host's line ending (CRLF on Windows, LF elsewhere), lf and crlf force that ending",
         LineEnding>
         lineEnding = LineEnding::preserve;
+
+    rfl::Description<
+        "Placement of conditional directives (ifdef, ifndef, elsif, else, endif) that start "
+        "their own line. \"code\" indents them with the surrounding code and indents the code "
+        "between them one more level; \"column0\" puts them at column 0 and leaves the code "
+        "between them at its normal indent. Other directives, and conditional directives that "
+        "share a line with code, are unaffected",
+        DirectiveIndent>
+        directiveIndent = DirectiveIndent::code;
 
     rfl::Description<
         "Maximum syntax tree depth and parser recursion budget (must be positive). "

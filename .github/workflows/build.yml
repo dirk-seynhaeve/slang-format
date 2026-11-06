@@ -150,8 +150,12 @@ jobs:
                   fi
 
                   cp LICENSE release-artifacts/LICENSE
+                  bash scripts/third-party-notices.sh build/${{ matrix.preset }} release-artifacts/THIRD-PARTY-NOTICES.txt
                   cat > release-artifacts/README.txt <<EOF
                   slang-format - SystemVerilog formatter
+
+                  This build comes from https://github.com/dirk-seynhaeve/slang-format. Its
+                  release notes list the changes from upstream slang-format.
 
                   Add the slang-format binary to PATH after extracting this archive.
 
